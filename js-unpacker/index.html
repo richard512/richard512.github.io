@@ -1,0 +1,117 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by anonymous (http://jsbin.com/riboluhomi/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>UnPacker</title>
+  </head>
+  <style> textarea {width: 100%} </style>
+  <body>
+
+
+    <div class="container_12">
+
+      <div class="grid_9">
+
+        <h3>JavaScript Packer UnPacker</h3>
+      </div>
+      <div class="clear"> </div>
+
+      <div class="grid_7">
+        <p>
+          <label>
+            <textarea name="input" id="input" cols="60" rows="10">eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('(0(){4 1="5 6 7 8";0 2(3){9(3)}2(1)})();',10,10,'function|b|something|a|var|some|sample|packed|code|alert'.split('|'),0,{}))</textarea>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input type="button" name="unpack" id="unpack" value="UnPack">
+          </label>
+          <label>
+            <input type="button" name="clear" id="clear" value="Clear ">
+          </label>
+        </p>
+        <p>
+          <label>
+            <textarea name="out" id="out" cols="60" rows="10"></textarea>
+          </label>
+        </p>
+
+      </div>
+      <div class="grid_5">
+
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script>
+          //////////////////////////////////////////
+          //  Un pack the code from the /packer/  //
+          //  By matthew@matthewfl.com            //
+          //  http://matthewfl.com/unPacker.html  //
+          //////////////////////////////////////////
+          // version 1.2
+
+
+          function unPack (code) {
+            function indent (code) {
+              try {
+                var tabs = 0, old=-1, add='';
+                for(var i=0;i<code.length;i++) {
+                  if(code[i].indexOf("{") != -1) tabs++;
+                  if(code[i].indexOf("}") != -1) tabs--;
+
+                  if(old != tabs) {
+                    old = tabs;
+                    add = "";
+                    while (old > 0) {
+                      add += "\t";
+                      old--;
+                    }
+                    old = tabs;
+                  }
+
+                  code[i] = add + code[i];
+                }
+              } finally {
+                tabs = null;
+                old = null;
+                add = null;
+              }
+              return code;
+            }
+
+            var env = {
+              eval: function (c) {
+                code = c;
+              },
+              window: {},
+              document: {}
+            };
+
+            eval("with(env) {" + code + "}");
+
+            code = (code+"").replace(/;/g, ";\n").replace(/{/g, "\n{\n").replace(/}/g, "\n}\n").replace(/\n;\n/g, ";\n").replace(/\n\n/g, "\n");
+
+            code = code.split("\n");
+            code = indent(code);
+
+            code = code.join("\n");
+            return code;
+          } 
+          $("#unpack").click(function () {
+            $("#out").val(unPack($("#input").val()));
+          });
+          $("#clear").click(function () {
+            $("textarea").val('');
+          });
+        </script>
+
+        </body>
+      </html>
