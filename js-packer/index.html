@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- saved from url=(0032)http://dean.edwards.name/packer/ -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -12,6 +11,10 @@
  <meta name="description" content="A Javascript compressor.">
  <meta name="keywords" content="packer,javascript,compressor,obfuscator">
  <link rel="stylesheet" href="./packer_files/packer.css" media="screen, projection">
+ <script src="./packer_files/base2-load.js"></script>
+ <script src="./packer_files/Packer.js"></script>
+ <script src="./packer_files/Words.js"></script>
+ <script src="./packer_files/bindings.js"></script>
 </head>
 <body>
 <header>
@@ -46,9 +49,9 @@
  </p>
  <p><label class="copy">Copy:</label>
   <textarea id="output" name="output" rows="10" cols="80" readonly="" spellcheck="false"></textarea></p>
- <p id="message" class="">ready</p>
+ <p id="message" class="">compression ratio: 228/295=0.773</p>
  <p class="form-buttons" id="output-buttons">
-  <button type="submit" id="save-script" disabled="">Save</button>
+  <button type="submit" id="save-script">Save</button>
   <button type="button" id="decode-script" disabled="">Decode</button>
  </p>
 </form>
@@ -58,14 +61,5 @@
  <p>Copyright © 2004-2017 Dean Edwards. All rights reserved.</p>
 </footer>
 
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-<script>
-$('#pack-script').click(function(){
-  input = $('#input').val()
-  fixed = input.replace(/ -H /g, ' \\\n\t-H ')
-  fixed = fixed.replace(/ --compressed/, ' \\\n\t--compressed')
-  $('#output').val(fixed)
-})
-</script>
 
 </body></html>
