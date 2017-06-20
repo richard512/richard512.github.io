@@ -28,14 +28,15 @@ a .title {
 	height: 100%;
 	width: 100%;
 }
-#gennedmail{
-	position: fixed;
-	top: 20px;
-	left: 50%;
-	width: 100px;
-	height: 50px;
-	font-size: 20px;
-	background: white;
+#gennedmail {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    background: red;
+    margin-left: -100px;
 }
 </style>
 
@@ -65,7 +66,7 @@ a .title {
 	<div class="photo" style="background-image:url(assets/find-your-music.png)"></div>
 	<div class="title">find your music</div></div>
 </a>
-<a href="#">
+<a href="javascript:showmsgbox();">
 	<div class="photo" style="background-image:url(assets/email.png)"></div>
 	<div class="title">email me</div></div>
 </a>
@@ -74,8 +75,10 @@ a .title {
 
 <script>
 function potate(str){
-return str.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
+	return str.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
 }
-document.getElementById('gennedmail').innerText = potate('znvygb:evpuneqg512@lnubb.pbz')
-document.getElementById('gennedmail').style.display = 'block';
+function showmsgbox(){
+	document.getElementById('gennedmail').innerText = potate('evpuneqg512@lnubb.pbz')
+	document.getElementById('gennedmail').setAttribute('style', '')
+}
 </script>
