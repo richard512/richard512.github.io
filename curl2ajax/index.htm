@@ -70,6 +70,8 @@ function curl2ajax(){
 	cmd = curlinput.getValue()
 curlvars = curlParse(cmd)
 	editor.setValue('curlvars = '+JSON.stringify(curlvars, null, '\t')+"\n\n"+doxhr+"\n\n"+"doxhr(curlvars)")
+	curlinput.gotoLine(1, 1, true);
+	editor.gotoLine(1, 1, true);
 }
 
 </script>
