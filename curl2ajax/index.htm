@@ -65,5 +65,5 @@ function doxhr(curlvars) {
 }
 
 curlvars = curlParse(cmd)
-document.write(JSON.stringify(curlvars))
+document.write(JSON.stringify(curlvars)+"\n\n"+"function doxhr(curlvars) {\n"+doxhr+"\n}")
 </script>
