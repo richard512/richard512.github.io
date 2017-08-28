@@ -106,10 +106,12 @@ curlvars = curlParse(cmd)
 	curlinput.getSession().setMode("ace/mode/sh");
 	curlinput.getSession().setUseWrapMode(true);
 	curlinput.setValue(cmd)
+	curlinput.gotoLine(1, 1, true);
 
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/monokai");
 	editor.getSession().setMode("ace/mode/javascript");
+	editor.gotoLine(1, 1, true);
 	
 </script>
 </body>
