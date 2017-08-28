@@ -94,7 +94,7 @@ curlvars = curlParse(cmd)
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
-	editor.setText(JSON.stringify(curlvars)+"\n\n"+doxhr)
+	editor.setValue(JSON.stringify(curlvars)+"\n\n"+doxhr)
 </script>
 </body>
 </html>
