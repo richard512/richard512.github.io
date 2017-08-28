@@ -42,10 +42,10 @@ function curlParse(cmd) {
 	return results
 }
 
-function doxhr(curlvars) {
+function doxhr(curlvars, callback) {
 	xhr = new XMLHttpRequest();
 	xhr.open("POST", curlvars.url, false);
-	forbiddenheaders = ["Cookie", "Origin", "Accept-Encoding", "User-Agent", "Referer", "Connection"]
+	forbiddenheaders = ["Cookie", "Origin", "Accept-Encoding", "User-Agent", "Cache-Control", "DNT", "Pragma", "Referer", "Connection"]
 	for (i in curlvars.headers) {
 		if (forbiddenheaders.indexOf(i) < 0) {
 			console.log('setting header', i, curlvars.headers[i]);
@@ -56,9 +56,11 @@ function doxhr(curlvars) {
 	}
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == xhr.DONE) {
-			console.log('xhr.response', xhr.response)
+			//console.log('xhr.response', xhr.response)
+			callback(xhr.response)
 		} else {
-			console.error('xhr error', xhr)
+			//console.error('xhr error', xhr)
+			callback(null, xhr)
 		}
 	}
 	xhr.send(curlvars.data);
@@ -69,7 +71,7 @@ curlvars = curlParse(cmd)
 function curl2ajax(){
 	cmd = curlinput.getValue()
 curlvars = curlParse(cmd)
-	editor.setValue('curlvars = '+JSON.stringify(curlvars, null, '\t')+"\n\n"+doxhr+"\n\n"+"doxhr(curlvars)")
+	editor.setValue('curlvars = '+JSON.stringify(curlvars, null, '\t')+"\n\n"+doxhr+"\n\n"+"doxhr(curlvars, function(response, errxhr){\n\tconsole.log('response', response)\n})")
 	curlinput.gotoLine(1, 1, true);
 	editor.gotoLine(1, 1, true);
 }
