@@ -99,14 +99,15 @@ curlvars = curlParse(cmd)
 
 <script src="https://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    var curlinput = ace.edit("curlinput");
-    curlinput.setTheme("ace/theme/monokai");
-    curlinput.getSession().setMode("ace/mode/javascript");
+	var curlinput = ace.edit("curlinput");
+	curlinput.setTheme("ace/theme/monokai");
+	curlinput.getSession().setMode("ace/mode/javascript");
+	curlinput.getSession().setUseWrapMode(true);
 	curlinput.setValue(cmd)
-	
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
+
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/monokai");
+	editor.getSession().setMode("ace/mode/javascript");
 	editor.setValue('curlvars = '+JSON.stringify(curlvars, null, '\t')+"\n\n"+doxhr+"\n\n"+"doxhr(curlvars)")
 </script>
 </body>
