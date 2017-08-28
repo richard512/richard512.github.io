@@ -65,6 +65,13 @@ function doxhr(curlvars) {
 }
 
 curlvars = curlParse(cmd)
+
+function curl2ajax(){
+	cmd = curlinput.getValue()
+curlvars = curlParse(cmd)
+	editor.setValue('curlvars = '+JSON.stringify(curlvars, null, '\t')+"\n\n"+doxhr+"\n\n"+"doxhr(curlvars)")
+}
+
 </script>
 
 
@@ -76,25 +83,20 @@ curlvars = curlParse(cmd)
 <head>
 <title>ACE in Action</title>
 <style type="text/css" media="screen">
-    #curlinput { 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 50%;
-        left: 0;
+    #curlinput {
+	    height: 200px;
+	    width: 100%;
     }
     #editor { 
-        position: absolute;
-        top: 50%;
-        right: 0;
-        bottom: 0;
-        left: 0;
+	    height: 200px;
+	    width: 100%;
     }
 </style>
 </head>
 <body>
 
 <div id="curlinput"></div>
+	<button onclick="curlinput.getValue()">curl to ajax</button>
 <div id="editor"></div>
 
 <script src="https://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -108,7 +110,7 @@ curlvars = curlParse(cmd)
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/monokai");
 	editor.getSession().setMode("ace/mode/javascript");
-	editor.setValue('curlvars = '+JSON.stringify(curlvars, null, '\t')+"\n\n"+doxhr+"\n\n"+"doxhr(curlvars)")
+	
 </script>
 </body>
 </html>
