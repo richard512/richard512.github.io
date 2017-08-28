@@ -65,5 +65,36 @@ function doxhr(curlvars) {
 }
 
 curlvars = curlParse(cmd)
-document.write(JSON.stringify(curlvars)+"\n\n"+"function doxhr(curlvars) {\n"+doxhr+"\n}")
 </script>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+</head>
+<body>
+
+<div id="editor"></div>
+
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+	editor.setText(JSON.stringify(curlvars)+"\n\n"+doxhr)
+</script>
+</body>
+</html>
