@@ -76,9 +76,16 @@ curlvars = curlParse(cmd)
 <head>
 <title>ACE in Action</title>
 <style type="text/css" media="screen">
-    #editor { 
+    #curlinput { 
         position: absolute;
         top: 0;
+        right: 0;
+        bottom: 50%;
+        left: 0;
+    }
+    #editor { 
+        position: absolute;
+        top: 50%;
         right: 0;
         bottom: 0;
         left: 0;
@@ -87,10 +94,16 @@ curlvars = curlParse(cmd)
 </head>
 <body>
 
+<div id="curlinput"></div>
 <div id="editor"></div>
 
 <script src="https://ace.c9.io/build/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
+    var curlinput = ace.edit("editor");
+    curlinput.setTheme("ace/theme/monokai");
+    curlinput.getSession().setMode("ace/mode/javascript");
+	curlinput.setValue(cmd)
+	
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
